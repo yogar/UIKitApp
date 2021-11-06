@@ -16,6 +16,8 @@
 		5AC538972735ACE2008F87DE /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC538962735ACE2008F87DE /* UIView+Extensions.swift */; };
 		5AC538992736925C008F87DE /* SFSymbolItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC538982736925C008F87DE /* SFSymbolItem.swift */; };
 		5AC5389B27369300008F87DE /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC5389A27369300008F87DE /* CollectionViewController.swift */; };
+		5ACD33E22736E6970026CE12 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ACD33E12736E6970026CE12 /* CollectionViewCell.swift */; };
+		5ACD33E62736EF460026CE12 /* ModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ACD33E52736EF460026CE12 /* ModalViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,8 @@
 		5AC538962735ACE2008F87DE /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		5AC538982736925C008F87DE /* SFSymbolItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSymbolItem.swift; sourceTree = "<group>"; };
 		5AC5389A27369300008F87DE /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
+		5ACD33E12736E6970026CE12 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		5ACD33E52736EF460026CE12 /* ModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,16 +68,34 @@
 			children = (
 				5A64EF9F27305D87003F0B11 /* AppDelegate.swift */,
 				5A64EFA127305D87003F0B11 /* SceneDelegate.swift */,
-				5A64EFA327305D87003F0B11 /* TableViewController.swift */,
-				5AC5389A27369300008F87DE /* CollectionViewController.swift */,
+				5ACD33E32736E69B0026CE12 /* CollectionView */,
 				5AC538962735ACE2008F87DE /* UIView+Extensions.swift */,
-				5A46F24E2733D05B00E4C91D /* TableCell.swift */,
+				5ACD33E42736E6B80026CE12 /* TableView */,
 				5AC538982736925C008F87DE /* SFSymbolItem.swift */,
 				5A64EFA827305D8D003F0B11 /* Assets.xcassets */,
 				5A64EFAA27305D8D003F0B11 /* LaunchScreen.storyboard */,
 				5A64EFAD27305D8E003F0B11 /* Info.plist */,
 			);
 			path = UiKitApp;
+			sourceTree = "<group>";
+		};
+		5ACD33E32736E69B0026CE12 /* CollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				5AC5389A27369300008F87DE /* CollectionViewController.swift */,
+				5ACD33E12736E6970026CE12 /* CollectionViewCell.swift */,
+				5ACD33E52736EF460026CE12 /* ModalViewController.swift */,
+			);
+			path = CollectionView;
+			sourceTree = "<group>";
+		};
+		5ACD33E42736E6B80026CE12 /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				5A64EFA327305D87003F0B11 /* TableViewController.swift */,
+				5A46F24E2733D05B00E4C91D /* TableCell.swift */,
+			);
+			path = TableView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -146,8 +168,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5ACD33E62736EF460026CE12 /* ModalViewController.swift in Sources */,
 				5A64EFA427305D87003F0B11 /* TableViewController.swift in Sources */,
 				5A64EFA027305D87003F0B11 /* AppDelegate.swift in Sources */,
+				5ACD33E22736E6970026CE12 /* CollectionViewCell.swift in Sources */,
 				5AC538972735ACE2008F87DE /* UIView+Extensions.swift in Sources */,
 				5AC538992736925C008F87DE /* SFSymbolItem.swift in Sources */,
 				5AC5389B27369300008F87DE /* CollectionViewController.swift in Sources */,

@@ -18,8 +18,8 @@ class TableCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         backgroundColor = .clear
         
-        addSubview(cellImageView)
-        addSubview(cellLabelView)
+        contentView.addSubview(cellImageView)
+        contentView.addSubview(cellLabelView)
         
         configureImageView()
         configureTitleLable()
@@ -42,19 +42,19 @@ class TableCell: UITableViewCell {
     }
     
     func configureImageConstraints() {
-//        cellImageView.translatesAutoresizingMaskIntoConstraints = false
-//        cellImageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-//        cellImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10).isActive = true
-//        cellImageView.heightAnchor.constraint(equalToConstant: 50).isActive = true
-//        cellImageView.widthAnchor.constraint(equalTo: cellImageView.heightAnchor).isActive = true
+        cellImageView.translatesAutoresizingMaskIntoConstraints = false
+        cellImageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        cellImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10).isActive = true
+        cellImageView.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        cellImageView.widthAnchor.constraint(equalTo: cellImageView.heightAnchor).isActive = true
     }
 
     func configureLableConstraints() {
-//        cellLabelView.translatesAutoresizingMaskIntoConstraints = false
-//        cellLabelView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-//        cellLabelView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10).isActive = true
-//        cellLabelView.heightAnchor.constraint(equalToConstant: 100).isActive = true
-//        cellLabelView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12).isActive = true
+        cellLabelView.translatesAutoresizingMaskIntoConstraints = false
+        cellLabelView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        cellLabelView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10).isActive = true
+        cellLabelView.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        cellLabelView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12).isActive = true
     }
 }
 
