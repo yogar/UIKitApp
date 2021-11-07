@@ -29,6 +29,8 @@ class CollectionViewController: UICollectionViewController {
         
         registerCell()
         applyDataSource()
+        collectionView.isPagingEnabled = true
+        collectionView.showsHorizontalScrollIndicator = false
     }
     
     func registerListCell() {
@@ -61,7 +63,7 @@ class CollectionViewController: UICollectionViewController {
     func registerCell() {
         let cellRegistration = UICollectionView.CellRegistration<CollectionViewCell, SFSymbolItem> { (cell, indexPath, item) in
             cell.backgroundColor = .lightGray
-            cell.label.text = item.name
+            cell.titleLabel.text = item.name
             cell.imageView.image = item.image
         }
         

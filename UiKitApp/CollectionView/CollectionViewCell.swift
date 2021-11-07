@@ -10,35 +10,59 @@ import UIKit
 class CollectionViewCell: UICollectionViewCell {
     
     let imageView = UIImageView()
-    let label = UILabel()
+    let titleLabel = UILabel()
+    
+    lazy var button: UIButton = {
+        let button = UIButton()
+        button.setTitle("Show modal", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = tintColor
+        button.layer.cornerRadius = 10
+        button.clipsToBounds = true
+        return button
+    }()
+    
+    lazy var containerStackView: UIStackView = {
+        let spacer = UIView()
+        let stackView = UIStackView(arrangedSubviews:
+                                        [titleLabel,
+                                         imageView,
+                                         spacer,
+                                         button])
+        stackView.axis = .vertical
+        stackView.spacing = 1.0
+        return stackView
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        contentView.addSubview(imageView)
-        contentView.addSubview(label)
-        
-        configureLabelConstraints()
-        configureImageConstraints()
-        
+        contentView.addSubview(containerStackView)
+        setupConstraints()
+        button.addTarget(self, action: #selector(presentModalController), for: .touchUpInside)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configureLabelConstraints() {
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10).isActive = true
-        label.topAnchor.constraint(equalTo: topAnchor, constant: 50).isActive = true
-//        label.heightAnchor.constraint(equalToConstant: 100).isActive = true
+    func setupConstraints() {
+        containerStackView.translatesAutoresizingMaskIntoConstraints = false
+        let safeArea = safeAreaLayoutGuide
+        
+        NSLayoutConstraint.activate([
+
+            containerStackView.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 24),
+            containerStackView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -24),
+            containerStackView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 24),
+            containerStackView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -24),
+
+            button.heightAnchor.constraint(equalToConstant: 50)
+        ])
     }
     
-    func configureImageConstraints() {
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.leadingAnchor.constraint(equalTo: label.trailingAnchor, constant: 10).isActive = true
-        imageView.topAnchor.constraint(equalTo: topAnchor, constant: 50).isActive = true
-//        image.heightAnchor.constraint(equalToConstant: 100).isActive = true
+    @objc func presentModalController() {
+        
     }
 
 }
