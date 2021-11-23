@@ -8,14 +8,14 @@
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-
     var window: UIWindow?
-
+    let persistenceController = PersistenceController.shared
+    
     func makeListCollectionViewController() -> CollectionViewController {
         let layoutConfig = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
         let listLayout = UICollectionViewCompositionalLayout.list(using: layoutConfig)
         
-        let viewController = CollectionViewController(collectionViewLayout: listLayout)
+        let viewController = CollectionViewController(collectionViewLayout: listLayout, persistenceController: persistenceController)
         return viewController
     }
     
@@ -25,15 +25,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                               heightDimension: .fractionalHeight(1.0))
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        let item = NSCollectionLayoutItem(layoutSize: itemSize) 
         
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                                heightDimension: .fractionalHeight(1.0))
         let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize,subitems: [item])
         let section = NSCollectionLayoutSection(group: group)
         let layout = UICollectionViewCompositionalLayout(section: section, configuration: layoutConfig)
+        print(section.contentInsets)
         
-        let viewController = CollectionViewController(collectionViewLayout: layout)
+        let viewController = CollectionViewController(collectionViewLayout: layout, persistenceController: persistenceController)
         return viewController
     }
     

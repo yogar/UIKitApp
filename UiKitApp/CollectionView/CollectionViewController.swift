@@ -8,7 +8,7 @@
 import UIKit
 
 class CollectionViewController: UICollectionViewController {
-    
+    let persistenceController: PersistenceController
     var dataSource: UICollectionViewDiffableDataSource<Section, SFSymbolItem>!
     var snapshot: NSDiffableDataSourceSnapshot<Section, SFSymbolItem>!
     
@@ -22,6 +22,16 @@ class CollectionViewController: UICollectionViewController {
     
     enum Section {
         case main
+    }
+    
+    init(collectionViewLayout layout: UICollectionViewLayout, persistenceController: PersistenceController) {
+        self.persistenceController = persistenceController
+        
+        super.init(collectionViewLayout: layout)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     override func viewDidLoad() {
@@ -73,7 +83,9 @@ class CollectionViewController: UICollectionViewController {
             let cell = collectionView.dequeueConfiguredReusableCell(using: cellRegistration,
                                                                     for: indexPath,
                                                                     item: identifier)
-            
+            cell.modalDelegate = self
+            cell.pin(to: collectionView)
+            print(cell.frame, cell.bounds)
             return cell
         }
     }
@@ -88,4 +100,20 @@ class CollectionViewController: UICollectionViewController {
         dataSource.apply(snapshot, animatingDifferences: false)
     }
     
+}
+
+
+extension CollectionViewController: ModalViewContollerDelegate {
+    
+    func presentViewController() {
+        let viewController = ModalViewContoller()
+        viewController.modalPresentationStyle = .overCurrentContext
+        self.present(viewController, animated: false)
+    }
+
+}
+
+extension CollectionViewController {
+    
+
 }

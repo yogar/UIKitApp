@@ -8,7 +8,7 @@
 import UIKit
 
 class CollectionViewCell: UICollectionViewCell {
-    
+    weak var modalDelegate: ModalViewContollerDelegate?
     let imageView = UIImageView()
     let titleLabel = UILabel()
     
@@ -25,21 +25,26 @@ class CollectionViewCell: UICollectionViewCell {
     lazy var containerStackView: UIStackView = {
         let spacer = UIView()
         let stackView = UIStackView(arrangedSubviews:
-                                        [titleLabel,
-                                         imageView,
-                                         spacer,
+                                        [
+                                            titleLabel,
+//                                         titleLabel,
+//                                         imageView,
+//                                         spacer,
                                          button])
+//        stackView.distribution = .fillProportionally
         stackView.axis = .vertical
-        stackView.spacing = 1.0
+//        stackView.spacing = 1.0
         return stackView
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        self.layer.borderWidth = 2
+        
         contentView.addSubview(containerStackView)
         setupConstraints()
-        button.addTarget(self, action: #selector(presentModalController), for: .touchUpInside)
+        button.addTarget(self, action: #selector(presentModalViewController), for: .touchUpInside)
     }
     
     required init?(coder: NSCoder) {
@@ -48,21 +53,19 @@ class CollectionViewCell: UICollectionViewCell {
     
     func setupConstraints() {
         containerStackView.translatesAutoresizingMaskIntoConstraints = false
-        let safeArea = safeAreaLayoutGuide
         
         NSLayoutConstraint.activate([
 
-            containerStackView.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 24),
-            containerStackView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -24),
-            containerStackView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 24),
-            containerStackView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -24),
+            containerStackView.topAnchor.constraint(equalTo: topAnchor, constant: 24),
+            containerStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -24),
+            containerStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24),
+            containerStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24),
 
             button.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
     
-    @objc func presentModalController() {
-        
+    @objc func presentModalViewController() {
+        modalDelegate?.presentViewController()
     }
-
 }

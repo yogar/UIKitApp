@@ -36,29 +36,37 @@ class ModalViewContoller: UIViewController {
         setupConstraints()
     }
     
+//    override func viewDidAppear(_ animated: Bool) {
+//        super.viewDidAppear(animated)
+//
+//        func animatePresentContainer() {
+//            UIView.animate(withDuration: 0.3) {
+//                self.containerViewBottomConstraint?.constant = 0
+//                self.view.layoutIfNeeded()
+//            }
+//        }
+//    }
+    
     func setupConstraints() {
-        // 4. Add subviews
-        view.addSubview(dimmedView)
+
+//        view.addSubview(dimmedView)
         view.addSubview(containerView)
-        dimmedView.translatesAutoresizingMaskIntoConstraints = false
+//        dimmedView.translatesAutoresizingMaskIntoConstraints = false
         containerView.translatesAutoresizingMaskIntoConstraints = false
         
-        // 5. Set static constraints
         NSLayoutConstraint.activate([
-            dimmedView.topAnchor.constraint(equalTo: view.topAnchor),
-            dimmedView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            dimmedView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            dimmedView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+//            dimmedView.topAnchor.constraint(equalTo: view.topAnchor),
+//            dimmedView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+//            dimmedView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+//            dimmedView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
 
             containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
         ])
         
-        // 6. Set container to default height
         containerViewHeightConstraint = containerView.heightAnchor.constraint(equalToConstant: defaultHeight)
-        // 7. Set bottom constant to 0
         containerViewBottomConstraint = containerView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
-        // Activate constraints
+
         containerViewHeightConstraint?.isActive = true
         containerViewBottomConstraint?.isActive = true
     }
