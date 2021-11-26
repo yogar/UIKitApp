@@ -13,12 +13,25 @@ class EntriesListViewController: UICollectionViewController {
     let entriesProvider: EntriesProvider
     var dataSource: UICollectionViewDiffableDataSource<Int, NSManagedObjectID>!
     var cancellables = Set<AnyCancellable>()
+    weak var modalDelegate: ModalViewContollerDelegate?
     
     init(persistenceController: PersistenceController, collectionViewLayout: UICollectionViewLayout) {
         self.entriesProvider = EntriesProvider(controller: persistenceController)
         
         super.init(collectionViewLayout: collectionViewLayout)
+        self.modalDelegate = self
     }
+    
+    lazy var button: UIButton = {
+        let button = UIButton()
+        button.setTitle("Add entry", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = .gray
+        button.layer.cornerRadius = 10
+        button.clipsToBounds = true
+        return button
+    }()
+
     
     override func viewDidLoad() {
         dataSource = makeDataSource()
@@ -31,13 +44,28 @@ class EntriesListViewController: UICollectionViewController {
                 }
             })
             .store(in: &cancellables)
+        
+        collectionView.addSubview(button)
+        setupButtonConstraints()
+        button.addTarget(self, action: #selector(presentModalViewController), for: .touchUpInside)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func makeDataSource() -> UICollectionViewDiffableDataSource<Int, NSManagedObjectID> {
+    private func setupButtonConstraints() {
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            button.topAnchor.constraint(equalTo: collectionView.topAnchor, constant: 24),
+            button.leadingAnchor.constraint(equalTo: collectionView.leadingAnchor, constant: 24),
+            button.heightAnchor.constraint(equalToConstant: 40),
+            button.widthAnchor.constraint(equalToConstant: 100)
+        ])
+    }
+    
+    private func makeDataSource() -> UICollectionViewDiffableDataSource<Int, NSManagedObjectID> {
         let cellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, NSManagedObjectID> { [weak self] (cell, indexPath, item) in
             
             guard let entry = self?.entriesProvider.object(at: indexPath) else { return }
@@ -55,4 +83,16 @@ class EntriesListViewController: UICollectionViewController {
             return cell
         }
     }
-}   
+    
+    @objc func presentModalViewController() {
+        modalDelegate?.presentViewController()
+    }
+}
+
+extension EntriesListViewController: ModalViewContollerDelegate {
+    func presentViewController() {
+        let viewController = ModalViewContoller()
+        viewController.modalPresentationStyle = .overCurrentContext
+        self.present(viewController, animated: true)
+    }
+}

@@ -16,7 +16,7 @@ class NewEntryViewCell: UICollectionViewCell {
         let button = UIButton()
         button.setTitle("Show modal", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = tintColor
+        button.backgroundColor = .gray
         button.layer.cornerRadius = 10
         button.clipsToBounds = true
         return button
