@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		5A1D42E7274CF97400C89E38 /* CBTModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5A1D42E5274CF97400C89E38 /* CBTModel.xcdatamodeld */; };
 		5A1D42E9274CFA0D00C89E38 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A1D42E8274CFA0D00C89E38 /* Persistence.swift */; };
-		5A1D42EB274D0B5E00C89E38 /* EntryProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A1D42EA274D0B5E00C89E38 /* EntryProvider.swift */; };
+		5A1D42EB274D0B5E00C89E38 /* EntriesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A1D42EA274D0B5E00C89E38 /* EntriesProvider.swift */; };
 		5A1D42ED274D25A400C89E38 /* EntriesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A1D42EC274D25A400C89E38 /* EntriesListViewController.swift */; };
 		5A46F24F2733D05B00E4C91D /* TableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A46F24E2733D05B00E4C91D /* TableCell.swift */; };
 		5A64EFA027305D87003F0B11 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A64EF9F27305D87003F0B11 /* AppDelegate.swift */; };
@@ -19,8 +19,8 @@
 		5A64EFAC27305D8D003F0B11 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A64EFAA27305D8D003F0B11 /* LaunchScreen.storyboard */; };
 		5AC538972735ACE2008F87DE /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC538962735ACE2008F87DE /* UIView+Extensions.swift */; };
 		5AC538992736925C008F87DE /* SFSymbolItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC538982736925C008F87DE /* SFSymbolItem.swift */; };
-		5AC5389B27369300008F87DE /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC5389A27369300008F87DE /* CollectionViewController.swift */; };
-		5ACD33E22736E6970026CE12 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ACD33E12736E6970026CE12 /* CollectionViewCell.swift */; };
+		5AC5389B27369300008F87DE /* NewEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC5389A27369300008F87DE /* NewEntryViewController.swift */; };
+		5ACD33E22736E6970026CE12 /* NewEntryViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ACD33E12736E6970026CE12 /* NewEntryViewCell.swift */; };
 		5ACD33E62736EF460026CE12 /* ModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ACD33E52736EF460026CE12 /* ModalViewController.swift */; };
 		5ACD33E82737D9950026CE12 /* ModalViewContollerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ACD33E72737D9950026CE12 /* ModalViewContollerDelegate.swift */; };
 /* End PBXBuildFile section */
@@ -28,7 +28,7 @@
 /* Begin PBXFileReference section */
 		5A1D42E6274CF97400C89E38 /* CBTModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CBTModel.xcdatamodel; sourceTree = "<group>"; };
 		5A1D42E8274CFA0D00C89E38 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
-		5A1D42EA274D0B5E00C89E38 /* EntryProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EntryProvider.swift; path = UiKitApp/EntryProvider.swift; sourceTree = SOURCE_ROOT; };
+		5A1D42EA274D0B5E00C89E38 /* EntriesProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EntriesProvider.swift; path = UiKitApp/EntriesProvider.swift; sourceTree = SOURCE_ROOT; };
 		5A1D42EC274D25A400C89E38 /* EntriesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EntriesListViewController.swift; path = UiKitApp/EntriesListViewController.swift; sourceTree = SOURCE_ROOT; };
 		5A46F24E2733D05B00E4C91D /* TableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableCell.swift; sourceTree = "<group>"; };
 		5A64EF9C27305D87003F0B11 /* UiKitApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UiKitApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -40,8 +40,8 @@
 		5A64EFAD27305D8E003F0B11 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5AC538962735ACE2008F87DE /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		5AC538982736925C008F87DE /* SFSymbolItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSymbolItem.swift; sourceTree = "<group>"; };
-		5AC5389A27369300008F87DE /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
-		5ACD33E12736E6970026CE12 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		5AC5389A27369300008F87DE /* NewEntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEntryViewController.swift; sourceTree = "<group>"; };
+		5ACD33E12736E6970026CE12 /* NewEntryViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEntryViewCell.swift; sourceTree = "<group>"; };
 		5ACD33E52736EF460026CE12 /* ModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalViewController.swift; sourceTree = "<group>"; };
 		5ACD33E72737D9950026CE12 /* ModalViewContollerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalViewContollerDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -80,9 +80,9 @@
 				5A1D42E8274CFA0D00C89E38 /* Persistence.swift */,
 				5A64EF9F27305D87003F0B11 /* AppDelegate.swift */,
 				5A64EFA127305D87003F0B11 /* SceneDelegate.swift */,
-				5A1D42EA274D0B5E00C89E38 /* EntryProvider.swift */,
+				5A1D42EA274D0B5E00C89E38 /* EntriesProvider.swift */,
 				5A1D42EC274D25A400C89E38 /* EntriesListViewController.swift */,
-				5ACD33E32736E69B0026CE12 /* CollectionView */,
+				5ACD33E32736E69B0026CE12 /* NewEntry */,
 				5AC538962735ACE2008F87DE /* UIView+Extensions.swift */,
 				5ACD33E42736E6B80026CE12 /* TableView */,
 				5AC538982736925C008F87DE /* SFSymbolItem.swift */,
@@ -93,15 +93,15 @@
 			path = UiKitApp;
 			sourceTree = "<group>";
 		};
-		5ACD33E32736E69B0026CE12 /* CollectionView */ = {
+		5ACD33E32736E69B0026CE12 /* NewEntry */ = {
 			isa = PBXGroup;
 			children = (
-				5AC5389A27369300008F87DE /* CollectionViewController.swift */,
-				5ACD33E12736E6970026CE12 /* CollectionViewCell.swift */,
+				5AC5389A27369300008F87DE /* NewEntryViewController.swift */,
+				5ACD33E12736E6970026CE12 /* NewEntryViewCell.swift */,
 				5ACD33E52736EF460026CE12 /* ModalViewController.swift */,
 				5ACD33E72737D9950026CE12 /* ModalViewContollerDelegate.swift */,
 			);
-			path = CollectionView;
+			path = NewEntry;
 			sourceTree = "<group>";
 		};
 		5ACD33E42736E6B80026CE12 /* TableView */ = {
@@ -188,11 +188,11 @@
 				5A64EFA427305D87003F0B11 /* TableViewController.swift in Sources */,
 				5A1D42E7274CF97400C89E38 /* CBTModel.xcdatamodeld in Sources */,
 				5A64EFA027305D87003F0B11 /* AppDelegate.swift in Sources */,
-				5ACD33E22736E6970026CE12 /* CollectionViewCell.swift in Sources */,
+				5ACD33E22736E6970026CE12 /* NewEntryViewCell.swift in Sources */,
 				5AC538972735ACE2008F87DE /* UIView+Extensions.swift in Sources */,
 				5AC538992736925C008F87DE /* SFSymbolItem.swift in Sources */,
-				5AC5389B27369300008F87DE /* CollectionViewController.swift in Sources */,
-				5A1D42EB274D0B5E00C89E38 /* EntryProvider.swift in Sources */,
+				5AC5389B27369300008F87DE /* NewEntryViewController.swift in Sources */,
+				5A1D42EB274D0B5E00C89E38 /* EntriesProvider.swift in Sources */,
 				5A46F24F2733D05B00E4C91D /* TableCell.swift in Sources */,
 				5A1D42E9274CFA0D00C89E38 /* Persistence.swift in Sources */,
 				5ACD33E82737D9950026CE12 /* ModalViewContollerDelegate.swift in Sources */,

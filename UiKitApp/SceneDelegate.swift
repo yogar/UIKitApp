@@ -8,17 +8,17 @@
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-    let entryProvider = EntryProvider(controller: PersistenceController.shared)
+    let persistenceController = PersistenceController.shared
     var window: UIWindow?
     
-    func makeListCollectionViewController() -> CollectionViewController {
+    func makeEntriesListViewController() -> EntriesListViewController {
         let layoutConfig = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
         let listLayout = UICollectionViewCompositionalLayout.list(using: layoutConfig)
-        let viewController = CollectionViewController(collectionViewLayout: listLayout)
+        let viewController = EntriesListViewController(persistenceController: persistenceController, collectionViewLayout: listLayout)
         return viewController
     }
     
-    func makeCollectionViewController() -> CollectionViewController {
+    func makeCollectionViewController() -> NewEntryViewController {
         let layoutConfig = UICollectionViewCompositionalLayoutConfiguration()
         layoutConfig.scrollDirection = .horizontal
         
@@ -33,12 +33,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let layout = UICollectionViewCompositionalLayout(section: section, configuration: layoutConfig)
         print(section.contentInsets)
         
-        let viewController = CollectionViewController(collectionViewLayout: layout)
-        return viewController
-    }
-    
-    func makeEntriesListViewController() -> EntriesListViewController {
-        let viewController = EntriesListViewController(entryProvider: entryProvider)
+        let viewController = NewEntryViewController(collectionViewLayout: layout)
         return viewController
     }
     
@@ -48,8 +43,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let windowScene = (scene as? UIWindowScene) else { return }
-        let rootViewController = makeCollectionViewController()
-//        let rootViewController = TableViewController()
+        let rootViewController = makeEntriesListViewController()
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
         window?.rootViewController = rootViewController

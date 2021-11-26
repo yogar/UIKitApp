@@ -9,7 +9,7 @@ import Foundation
 import CoreData
 import UIKit
 
-class EntryProvider: NSObject {
+class EntriesProvider: NSObject {
     let controller: PersistenceController
     
     fileprivate let fetchedResultsController: NSFetchedResultsController<Entry>
@@ -28,9 +28,13 @@ class EntryProvider: NSObject {
         fetchedResultsController.delegate = self
         try! fetchedResultsController.performFetch()
     }
+    
+    func object(at indexPath: IndexPath) -> Entry {
+        return fetchedResultsController.object(at: indexPath)
+    }
 }
 
-extension EntryProvider: NSFetchedResultsControllerDelegate {
+extension EntriesProvider: NSFetchedResultsControllerDelegate {
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChangeContentWith snapshot: NSDiffableDataSourceSnapshotReference) {
         var newSnapshot = snapshot as NSDiffableDataSourceSnapshot<Int, NSManagedObjectID>
         

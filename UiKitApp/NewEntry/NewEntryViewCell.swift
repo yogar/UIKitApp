@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CollectionViewCell: UICollectionViewCell {
+class NewEntryViewCell: UICollectionViewCell {
     weak var modalDelegate: ModalViewContollerDelegate?
     let imageView = UIImageView()
     let titleLabel = UILabel()
