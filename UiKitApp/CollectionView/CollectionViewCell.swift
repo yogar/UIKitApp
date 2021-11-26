@@ -26,14 +26,14 @@ class CollectionViewCell: UICollectionViewCell {
         let spacer = UIView()
         let stackView = UIStackView(arrangedSubviews:
                                         [
-                                            titleLabel,
-//                                         titleLabel,
-//                                         imageView,
-//                                         spacer,
-                                         button])
-//        stackView.distribution = .fillProportionally
+                                        titleLabel,
+                                        imageView,
+                                        spacer,
+                                        button
+                                        ])
+        stackView.distribution = .fillProportionally
         stackView.axis = .vertical
-//        stackView.spacing = 1.0
+        stackView.spacing = 1.0
         return stackView
     }()
     

@@ -6,9 +6,11 @@
 //
 
 import UIKit
+import Combine
+import CoreData
 
 class CollectionViewController: UICollectionViewController {
-    let persistenceController: PersistenceController
+//    let entryProvider: EntryProvider
     var dataSource: UICollectionViewDiffableDataSource<Section, SFSymbolItem>!
     var snapshot: NSDiffableDataSourceSnapshot<Section, SFSymbolItem>!
     
@@ -24,16 +26,14 @@ class CollectionViewController: UICollectionViewController {
         case main
     }
     
-    init(collectionViewLayout layout: UICollectionViewLayout, persistenceController: PersistenceController) {
-        self.persistenceController = persistenceController
-        
-        super.init(collectionViewLayout: layout)
-    }
+//    init(collectionViewLayout layout: UICollectionViewLayout) {
+//        super.init(collectionViewLayout: layout)
+//    }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
+//    required init?(coder: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
+//    }
+//    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -84,7 +84,6 @@ class CollectionViewController: UICollectionViewController {
                                                                     for: indexPath,
                                                                     item: identifier)
             cell.modalDelegate = self
-            cell.pin(to: collectionView)
             print(cell.frame, cell.bounds)
             return cell
         }

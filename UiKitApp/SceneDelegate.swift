@@ -8,14 +8,13 @@
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+    let entryProvider = EntryProvider(controller: PersistenceController.shared)
     var window: UIWindow?
-    let persistenceController = PersistenceController.shared
     
     func makeListCollectionViewController() -> CollectionViewController {
         let layoutConfig = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
         let listLayout = UICollectionViewCompositionalLayout.list(using: layoutConfig)
-        
-        let viewController = CollectionViewController(collectionViewLayout: listLayout, persistenceController: persistenceController)
+        let viewController = CollectionViewController(collectionViewLayout: listLayout)
         return viewController
     }
     
@@ -34,10 +33,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let layout = UICollectionViewCompositionalLayout(section: section, configuration: layoutConfig)
         print(section.contentInsets)
         
-        let viewController = CollectionViewController(collectionViewLayout: layout, persistenceController: persistenceController)
+        let viewController = CollectionViewController(collectionViewLayout: layout)
         return viewController
     }
     
+    func makeEntriesListViewController() -> EntriesListViewController {
+        let viewController = EntriesListViewController(entryProvider: entryProvider)
+        return viewController
+    }
     
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
