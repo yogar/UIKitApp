@@ -103,7 +103,7 @@ extension EntriesListViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.dismiss(animated: true)
         if let situation = textField.text {
-            entriesProvider.createEntry(situation: situation)
+            entriesProvider.createEntry(situation)
         }
         return true
     }

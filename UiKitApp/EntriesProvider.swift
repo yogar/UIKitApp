@@ -33,15 +33,25 @@ class EntriesProvider: NSObject {
         return fetchedResultsController.object(at: indexPath)
     }
     
-    func createEntry(situation: String) {
+    func createEntry(_ situation: String) {
         let entry = Entry(context: controller.containter.viewContext)
         entry.situation = situation
         
         do {
             try controller.containter.viewContext.save()
             print("Entry created successfully")
-        } catch let error {
+        } catch {
             print("Failed to create entry: ", error.localizedDescription)
+        }
+    }
+    
+    func deleteEntry(_ entry: Entry) {
+        controller.containter.viewContext.delete(entry)
+        do {
+            try controller.containter.viewContext.save()
+        } catch {
+            controller.containter.viewContext.rollback()
+            print("Failed to save context: \(error.localizedDescription)")
         }
     }
 }
