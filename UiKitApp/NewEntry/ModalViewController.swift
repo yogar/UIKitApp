@@ -8,7 +8,6 @@
 import UIKit
 
 class ModalViewContoller: UIViewController {
-    
     lazy var containerView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
@@ -17,28 +16,46 @@ class ModalViewContoller: UIViewController {
         return view
     }()
     
+    lazy var textInputView: UITextField = {
+        let view = UITextField()
+        view.placeholder = "Some text"
+        view.borderStyle = .roundedRect
+        return view
+    }()
+    
     let defaultHeight: CGFloat = 400
     let dismissibleHeight: CGFloat = 200
     var currentContainerHeight: CGFloat = 400
+    weak var textFieldDelegate: UITextFieldDelegate?
     
     var containerViewHeightConstraint: NSLayoutConstraint?
     var containerViewBottomConstraint: NSLayoutConstraint?
-    
+    let maximumContainerHeight: CGFloat = UIScreen.main.bounds.height - 64
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        view.addSubview(containerView)
+        view.addSubview(textInputView)
+        textInputView.delegate = textFieldDelegate
+        
         setupConstraints()
         setupPanGesture()
     }
 
     
     func setupConstraints() {
-        view.addSubview(containerView)
         containerView.translatesAutoresizingMaskIntoConstraints = false
+        textInputView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            
+            textInputView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 10),
+            textInputView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -10),
+            textInputView.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 10),
+            textInputView.heightAnchor.constraint(equalToConstant: 100)
         ])
         
         containerViewHeightConstraint = containerView.heightAnchor.constraint(equalToConstant: defaultHeight)
@@ -58,12 +75,13 @@ class ModalViewContoller: UIViewController {
     @objc func handlePanGesture(gesture: UIPanGestureRecognizer) {
         let translation = gesture.translation(in: view)
         let newHeight = currentContainerHeight - translation.y
-
+        let isDraggingDown = translation.y > 0
+        
         switch gesture.state {
         case .changed:
-            if newHeight < defaultHeight {
-                containerViewHeightConstraint?.constant = newHeight
-                view.layoutIfNeeded()
+            UIView.animate(withDuration: 0.3) {
+                self.containerViewHeightConstraint?.constant = newHeight
+                self.view.layoutIfNeeded()
             }
         case .ended:
             // Condition 1: If new height is below min, dismiss controller
@@ -77,14 +95,20 @@ class ModalViewContoller: UIViewController {
                     self.view.layoutIfNeeded()
                 }
             }
-//            else if newHeight < maximumContainerHeight && isDraggingDown {
-//               // Condition 3: If new height is below max and going down, set to default height
-//               animateContainerHeight(defaultHeight)
-//            }
-//            else if newHeight > defaultHeight && !isDraggingDown {
-//               // Condition 4: If new height is below max and going up, set to max height at top
-//               animateContainerHeight(maximumContainerHeight)
-//            }
+            // Condition 3: If new height is below max and going down, set to default height
+            else if newHeight < maximumContainerHeight && isDraggingDown {
+                UIView.animate(withDuration: 0.4) {
+                    self.containerViewHeightConstraint?.constant = self.defaultHeight
+                    self.view.layoutIfNeeded()
+                }
+            }
+            else if newHeight > defaultHeight && !isDraggingDown {
+            // Condition 4: If new height is below max and going up, set to max height at top
+                UIView.animate(withDuration: 0.4) {
+                    self.containerViewHeightConstraint?.constant = self.maximumContainerHeight
+                    self.view.layoutIfNeeded()
+                }
+            }
        default:
            break
        }

@@ -32,6 +32,18 @@ class EntriesProvider: NSObject {
     func object(at indexPath: IndexPath) -> Entry {
         return fetchedResultsController.object(at: indexPath)
     }
+    
+    func createEntry(situation: String) {
+        let entry = Entry(context: controller.containter.viewContext)
+        entry.situation = situation
+        
+        do {
+            try controller.containter.viewContext.save()
+            print("Entry created successfully")
+        } catch let error {
+            print("Failed to create entry: ", error.localizedDescription)
+        }
+    }
 }
 
 extension EntriesProvider: NSFetchedResultsControllerDelegate {

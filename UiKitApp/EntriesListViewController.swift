@@ -27,7 +27,7 @@ class EntriesListViewController: UICollectionViewController {
         button.setTitle("Add entry", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = .gray
-        button.layer.cornerRadius = 10
+        button.layer.cornerRadius = 50
         button.clipsToBounds = true
         return button
     }()
@@ -58,9 +58,9 @@ class EntriesListViewController: UICollectionViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            button.topAnchor.constraint(equalTo: collectionView.topAnchor, constant: 24),
-            button.leadingAnchor.constraint(equalTo: collectionView.leadingAnchor, constant: 24),
-            button.heightAnchor.constraint(equalToConstant: 40),
+            button.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -50),
+            button.leadingAnchor.constraint(equalTo: view.trailingAnchor, constant: -120),
+            button.heightAnchor.constraint(equalToConstant: 100),
             button.widthAnchor.constraint(equalToConstant: 100)
         ])
     }
@@ -92,7 +92,19 @@ class EntriesListViewController: UICollectionViewController {
 extension EntriesListViewController: ModalViewContollerDelegate {
     func presentViewController() {
         let viewController = ModalViewContoller()
+        viewController.textFieldDelegate = self
         viewController.modalPresentationStyle = .overCurrentContext
         self.present(viewController, animated: true)
+    }
+}
+
+
+extension EntriesListViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.dismiss(animated: true)
+        if let situation = textField.text {
+            entriesProvider.createEntry(situation: situation)
+        }
+        return true
     }
 }
